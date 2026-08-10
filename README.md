@@ -427,52 +427,6 @@ Close the CSV file before running the script again.
 
 ---
 
-## ⚠️ Important Improvement to Your Current Code
-
-Your current script first creates the CSV using:
-
-```python
-'w'
-```
-
-and then appends to it using:
-
-```python
-'a+'
-```
-
-The `w` mode **overwrites the existing CSV every time the program starts**.
-
-For a price tracker, you normally want to create the header only if the file doesn't already exist.
-
-A better approach is:
-
-```python
-import os
-import csv
-
-file_name = "AmazonWebScraperDataSet.csv"
-
-file_exists = os.path.exists(file_name)
-
-with open(
-    file_name,
-    "a",
-    newline="",
-    encoding="UTF8"
-) as f:
-
-    writer = csv.writer(f)
-
-    if not file_exists:
-        writer.writerow(["Title", "Price", "Date"])
-
-    writer.writerow([title, price, today])
-```
-
-This preserves your historical price data.
-
----
 
 ## 🎯 Learning Outcomes
 
@@ -527,17 +481,5 @@ This project was created as a Python web-scraping and automation learning projec
 
 ---
 
-## ⭐ If You Like This Project
 
-You can improve it by adding:
-
-* Multiple product tracking
-* Email alerts
-* Telegram notifications
-* Price-history graphs
-* SQLite/MySQL database
-* Streamlit dashboard
-* Scheduled execution
-* Error logging
-* Automatic retry handling
 
